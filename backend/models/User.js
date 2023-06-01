@@ -1,62 +1,71 @@
 import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-    min: 2,
-    max: 50,
+const UserSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: false,
+      min: 2,
+      max: 50,
+    },
+    lastName: {
+      type: String,
+      required: false,
+      default: '',
+      min: 2,
+      max: 50,
+    },
+    email: {
+      type: String,
+      required: true,
+      min: 2,
+      max: 50,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      min: 6,
+      max: 25,
+    },
+    age: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    location: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    weight: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    height: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    gender: {
+      type: String,
+      enum: ['Male', 'Female', 'other'],
+      required: false,
+    },
+    // picturePath: {
+    //   type: String,
+    //   default: '',
+    //   required: false,
+    // },
+    // friends: {
+    //   type: Array,
+    //   required: false,
+    //   default: [],
+    // },
   },
-  lastName: {
-    type: String,
-    required: false,
-    default: '',
-    min: 2,
-    max: 50,
-  },
-  email: {
-    type: String,
-    required: true,
-    min: 2,
-    max: 50,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    min: 6,
-    max: 25,
-  },
-  age: {
-    type: Number,
-    required: false,
-    default: '',
-  },
-  weight: {
-    type: Number,
-    required: false,
-    default: '',
-  },
-  height: {
-    type: Number,
-    required: false,
-    default: '',
-  },
-  gender: {
-    type: String,
-    enum: ['man', 'woman'],
-    required: true,
-  },
-  picturePath: {
-    type: String,
-    default: '',
-  },
-  friends: {
-    type: Array,
-    default: [],
-  },
-  location: String,
-});
+  { timestamps: true },
+);
 
 const User = mongoose.model('User', UserSchema);
 // const MealCalendar = mongoose.model('MealCalendar', MealCalendarSchema);
