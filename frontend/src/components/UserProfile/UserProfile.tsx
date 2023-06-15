@@ -2,13 +2,16 @@ import {
   ManageAccountsOutlined,
   EditOutlined,
   LocationOnOutlined,
-  WorkOutlineOutlined,
 } from '@mui/icons-material';
+import MonitorWeightOutlinedIcon from '@mui/icons-material/MonitorWeightOutlined';
+import HeightOutlinedIcon from '@mui/icons-material/HeightOutlined';
 import { Box, Typography, Divider, useTheme } from '@mui/material';
-import UserImage from 'components/UserImage';
+import Avatar from '@mui/material/Avatar';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './UserProfile.module.scss';
+import avatar from '../../assets/avatar.png';
 
 type Gender = 'Female' | 'Male' | '-';
 
@@ -41,8 +44,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
   // const medium = palette.neutral.medium;
   // const main = palette.neutral.main;
 
-  console.log(userId);
-
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
       method: 'GET',
@@ -60,21 +61,23 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
     return null;
   }
 
-  const { firstName, lastName, location, age } = user;
+  const { firstName, lastName, location, age, weight, height, picturePath } =
+    user;
 
   return (
-    <Box>
+    <Box className={styles.profile__wrapper}>
       {/* FIRST ROW */}
       <Box
         gap="0.5rem"
         pb="1.1rem"
         onClick={() => navigate(`/profile/${userId}`)}
       >
-        <Box gap="1rem">
+        <Box className={styles.profile__namebox} gap="1rem">
           {/* <UserImage image={picturePath} /> */}
+          <Avatar alt="Remy Sharp" src={picturePath || avatar} />
           <Box>
             <Typography
-              variant="h4"
+              variant="h6"
               fontWeight="500"
               sx={{
                 '&:hover': {
@@ -88,17 +91,24 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
             <Typography>{age} years old</Typography>
           </Box>
         </Box>
-        <ManageAccountsOutlined />
       </Box>
 
       <Divider />
 
-      {/* SECOND ROW */}
       <Box p="1rem 0">
-        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
+        <Box display="flex" alignItems="center" gap="0.3rem" mb="0.5rem">
           <LocationOnOutlined fontSize="large" />
           <Typography>{location}</Typography>
         </Box>
+      </Box>
+
+      <Divider />
+
+      <Box className={styles.profile__paramsbox} p="1rem 0">
+        <MonitorWeightOutlinedIcon fontSize="large" />
+        <Typography>{weight} kg</Typography>
+        <HeightOutlinedIcon fontSize="large" />
+        <Typography>{height} sm</Typography>
       </Box>
 
       <Divider />

@@ -1,9 +1,13 @@
-import Form from './Form';
+import Form from './Form/Form';
+import styles from './LoginPage.module.scss';
 
 const LoginPage = () => {
   return (
-    <div>
-      <Form />
+    <div className={styles.wrapper}>
+      <div className={styles.formbox}>
+        <Form />
+      </div>
+      <div className={styles.boardbox}></div>
     </div>
   );
 };

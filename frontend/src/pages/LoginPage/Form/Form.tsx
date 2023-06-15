@@ -15,8 +15,9 @@ import { Formik, FormikHelpers } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setLogin } from '../../state';
+import { setLogin } from '../../../state';
 import Dropzone from 'react-dropzone';
+import styles from './Form.module.scss';
 
 type Gender = 'Female' | 'Male' | 'other';
 
@@ -164,127 +165,137 @@ const Form = () => {
         setFieldValue,
         resetForm,
       }) => (
-        <form onSubmit={handleSubmit}>
-          <Box
-            display="grid"
-            gap="30px"
-            // gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-            sx={{
-              '& > div': { gridColumn: isNonMobile ? undefined : 'span 4' },
-            }}
-          >
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <Box className={styles.form__inputbox}>
             {isRegister && (
-              <div>
-                <h1>Register Page</h1>
-                <TextField
-                  label="First Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="text"
-                  value={values.firstName}
-                  name="firstName"
-                  error={
-                    Boolean(touched.firstName) && Boolean(errors.firstName)
-                  }
-                  helperText={touched.firstName && errors.firstName}
-                  sx={{ gridColumn: 'span 2' }}
-                />
-                <TextField
-                  label="Last Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="text"
-                  value={values.lastName}
-                  name="lastName"
-                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
-                  helperText={touched.lastName && errors.lastName}
-                  sx={{ gridColumn: 'span 2' }}
-                />
-                <TextField
-                  label="Email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="email"
-                  value={values.email}
-                  name="email"
-                  error={Boolean(touched.email) && Boolean(errors.email)}
-                  helperText={touched.email && errors.email}
-                  sx={{ gridColumn: 'span 4' }}
-                />
-                <TextField
-                  label="Password"
-                  type="password"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.password}
-                  name="password"
-                  error={Boolean(touched.password) && Boolean(errors.password)}
-                  helperText={touched.password && errors.password}
-                  sx={{ gridColumn: 'span 4' }}
-                />
-                <TextField
-                  label="Age"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.age}
-                  type="number"
-                  name="age"
-                  error={Boolean(touched.age) && Boolean(errors.age)}
-                  helperText={touched.age && errors.age}
-                  sx={{ gridColumn: 'span 2' }}
-                />
-                <TextField
-                  label="Location"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="text"
-                  value={values.location}
-                  name="location"
-                  error={Boolean(touched.location) && Boolean(errors.location)}
-                  helperText={touched.location && errors.location}
-                  sx={{ gridColumn: 'span 4' }}
-                />
-                <TextField
-                  label="Weight"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.weight}
-                  type="number"
-                  name="weight"
-                  error={Boolean(touched.weight) && Boolean(errors.weight)}
-                  helperText={touched.weight && errors.weight}
-                  sx={{ gridColumn: 'span 2' }}
-                />
-                <TextField
-                  label="Height"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.height}
-                  type="number"
-                  name="height"
-                  error={Boolean(touched.height) && Boolean(errors.height)}
-                  helperText={touched.height && errors.height}
-                  sx={{ gridColumn: 'span 2' }}
-                />
-                <InputLabel id="gender">Gender</InputLabel>
-                <Select
-                  labelId="gender"
-                  id="gender"
-                  value={values.gender}
-                  label="Gender"
-                  onChange={handleChange}
-                >
-                  <MenuItem key={0} value={'Female'}>
-                    Female
-                  </MenuItem>
-                  <MenuItem key={1} value={'Male'}>
-                    Male
-                  </MenuItem>
-                  <MenuItem key={2} value={'other'}>
-                    other
-                  </MenuItem>
-                </Select>
-                {/* <Box gridColumn="span 4" borderRadius="5px" p="1rem">
+              <>
+                <Typography variant="h5" gutterBottom>
+                  Please, sign up:
+                </Typography>
+                <div className={styles.form__container_register}>
+                  <TextField
+                    label="First Name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    type="text"
+                    value={values.firstName}
+                    name="firstName"
+                    className="firstName"
+                    error={
+                      Boolean(touched.firstName) && Boolean(errors.firstName)
+                    }
+                    helperText={touched.firstName && errors.firstName}
+                    sx={{ gridColumn: 'span 2' }}
+                  />
+                  <TextField
+                    label="Last Name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    type="text"
+                    value={values.lastName}
+                    name="lastName"
+                    className="lastName"
+                    error={
+                      Boolean(touched.lastName) && Boolean(errors.lastName)
+                    }
+                    helperText={touched.lastName && errors.lastName}
+                    sx={{ gridColumn: 'span 2' }}
+                  />
+                  <TextField
+                    label="Email"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    type="email"
+                    value={values.email}
+                    name="email"
+                    className="email"
+                    error={Boolean(touched.email) && Boolean(errors.email)}
+                    helperText={touched.email && errors.email}
+                    sx={{ gridColumn: 'span 4' }}
+                  />
+                  <TextField
+                    label="Password"
+                    type="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.password}
+                    name="password"
+                    className="password"
+                    error={
+                      Boolean(touched.password) && Boolean(errors.password)
+                    }
+                    helperText={touched.password && errors.password}
+                    sx={{ gridColumn: 'span 4' }}
+                  />
+                  <TextField
+                    label="Age"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.age}
+                    type="number"
+                    name="age"
+                    className="age"
+                    error={Boolean(touched.age) && Boolean(errors.age)}
+                    helperText={touched.age && errors.age}
+                    sx={{ gridColumn: 'span 2' }}
+                  />
+                  <TextField
+                    label="Location"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    type="text"
+                    value={values.location}
+                    name="location"
+                    className="location"
+                    error={
+                      Boolean(touched.location) && Boolean(errors.location)
+                    }
+                    helperText={touched.location && errors.location}
+                    sx={{ gridColumn: 'span 4' }}
+                  />
+                  <TextField
+                    label="Weight"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.weight}
+                    type="number"
+                    name="weight"
+                    className="weight"
+                    error={Boolean(touched.weight) && Boolean(errors.weight)}
+                    helperText={touched.weight && errors.weight}
+                    sx={{ gridColumn: 'span 2' }}
+                  />
+                  <TextField
+                    label="Height"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.height}
+                    type="number"
+                    name="height"
+                    className="height"
+                    error={Boolean(touched.height) && Boolean(errors.height)}
+                    helperText={touched.height && errors.height}
+                    sx={{ gridColumn: 'span 2' }}
+                  />
+                  <InputLabel id="gender">Gender</InputLabel>
+                  <Select
+                    labelId="gender"
+                    className="gender"
+                    value={values.gender}
+                    label="Gender"
+                    onChange={handleChange}
+                  >
+                    <MenuItem key={0} value={'Female'}>
+                      Female
+                    </MenuItem>
+                    <MenuItem key={1} value={'Male'}>
+                      Male
+                    </MenuItem>
+                    <MenuItem key={2} value={'other'}>
+                      other
+                    </MenuItem>
+                  </Select>
+                  {/* <Box gridColumn="span 4" borderRadius="5px" p="1rem">
                   <Dropzone
                     // acceptedFiles=".jpg,.jpeg,.png"
                     multiple={false}
@@ -312,12 +323,16 @@ const Form = () => {
                     )}
                   </Dropzone>
                 </Box> */}
-              </div>
+                </div>
+              </>
             )}
 
             {isLogin && (
-              <div>
-                <h1>Login Page</h1>
+              <div className={styles.form__container_login}>
+                <Typography variant="h2">Welcome!</Typography>
+                <Typography variant="h5" gutterBottom>
+                  Login to your account:
+                </Typography>
                 <TextField
                   label="Email"
                   onBlur={handleBlur}
@@ -343,8 +358,9 @@ const Form = () => {
               </div>
             )}
           </Box>
-          <Box>
+          <Box className={styles.form__buttonbox}>
             <Button
+              className={styles.form__button}
               fullWidth
               type="submit"
               sx={{
@@ -356,7 +372,11 @@ const Form = () => {
             >
               {isLogin ? 'LOGIN' : 'REGISTER'}
             </Button>
+            <Typography className={styles.form__text}>
+              {isLogin ? "Don't have an account?" : 'Already have an account?'}
+            </Typography>
             <Typography
+              className={styles.form__text}
               onClick={() => {
                 setPageType(isLogin ? 'register' : 'login');
                 resetForm();
@@ -370,9 +390,7 @@ const Form = () => {
                 },
               }}
             >
-              {isLogin
-                ? "Don't have an account? Sign Up here."
-                : 'Already have an account? Login here.'}
+              {isLogin ? 'Create an account here.' : 'Login here.'}
             </Typography>
           </Box>
         </form>

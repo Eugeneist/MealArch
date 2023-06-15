@@ -1,0 +1,96 @@
+.form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__container_login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__container_register {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    grid-template-areas:
+      'firstName' 'lastName'
+      'email'
+      'password'
+      'age' 'location'
+      'weight' 'height'
+      'gender';
+  }
+
+  &__buttonbox {
+    width: 100%;
+  }
+
+  &__inputbox {
+    width: 100%;
+  }
+
+  &__button {
+    background-color: #466443;
+    color: #f7ffdd;
+    transition: all 0.25s;
+
+    &:hover {
+      background-color: rgba($color: #466443, $alpha: 0.8);
+      color: #f7ffdd;
+      transition: all 0.25s;
+    }
+  }
+
+  &__input {
+    border: 1px solid #5a6c06;
+  }
+
+  &__text {
+    display: inline;
+    margin-right: 10px;
+  }
+}
+
+.firstName {
+  grid-area: firstName;
+}
+
+.lastName {
+  grid-area: lastName;
+}
+
+.email {
+  grid-area: email;
+}
+
+.password {
+  grid-area: password;
+}
+
+.age {
+  grid-area: age;
+}
+
+.location {
+  grid-area: location;
+}
+
+.email {
+  grid-area: email;
+}
+
+.weight {
+  grid-area: weight;
+}
+
+.height {
+  grid-area: height;
+}
+
+.gender {
+  grid-area: gender;
+}

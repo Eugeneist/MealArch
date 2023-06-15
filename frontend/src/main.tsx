@@ -16,6 +16,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
+import { StyledEngineProvider } from '@mui/material/styles';
 import './index.css';
 
 const persistConfig = { key: 'root', storage, version: 1 };
@@ -34,7 +35,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistStore(store)}>
-        <App />
+        <StyledEngineProvider injectFirst>
+          <App />
+        </StyledEngineProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,

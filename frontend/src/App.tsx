@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Navbar } from './components';
 import { LoginPage, ProfilePage } from './pages';
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
+      <Navbar />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route

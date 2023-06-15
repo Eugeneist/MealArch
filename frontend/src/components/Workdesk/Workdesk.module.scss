@@ -1,0 +1,15 @@
+.workdesk {
+  width: 80%;
+  &__menu {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    gap: 1%;
+  }
+
+  &__tools {
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+  }
+}

@@ -1,0 +1,28 @@
+// .wrapper {
+//   border: 4px solid #466443;
+//   border-radius: 30px;
+//   background-color: #f7ffdd;
+//   padding: 10px;
+// }
+
+.profile {
+  &__wrapper {
+    border: 4px solid #466443;
+    border-radius: 30px;
+    background-color: #f7ffdd;
+    padding: 25px;
+    height: 80vh;
+  }
+
+  &__namebox {
+    display: flex;
+    align-items: center;
+  }
+
+  &__paramsbox {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.3rem;
+  }
+}

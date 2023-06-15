@@ -1,15 +1,16 @@
 import { Box, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { UserProfile } from '../../components';
+import { UserProfile, Workdesk } from '../../components';
+import styles from './ProfilePage.module.scss';
 
 const ProfilePage = () => {
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
   const { _id } = useSelector((state: any) => state.user);
 
   return (
-    <div>
-      <h1>Your page, user!</h1>
+    <div className={styles.wrapper}>
       <UserProfile userId={_id} />
+      <Workdesk />
     </div>
   );
 };

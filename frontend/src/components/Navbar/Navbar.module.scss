@@ -1,0 +1,15 @@
+.navbar {
+  color: #f7ffdd;
+  background-color: #466443;
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.logo {
+  fill: #f7ffdd;
+  color: #f7ffdd;
+  width: 150px;
+}
